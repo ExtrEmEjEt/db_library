@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Nov 01, 2022 at 01:51 AM
--- Server version: 5.7.34
--- PHP Version: 7.4.21
+-- Host: localhost:3306
+-- Generation Time: Nov 04, 2022 at 11:00 PM
+-- Server version: 5.7.24
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `BOOK`
+-- Table structure for table `book`
 --
 
-CREATE TABLE `BOOK` (
+CREATE TABLE `book` (
   `name` varchar(256) NOT NULL,
   `auths` text NOT NULL,
   `pub_house` text NOT NULL,
@@ -42,41 +42,40 @@ CREATE TABLE `BOOK` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `BOOK`
+-- Dumping data for table `book`
 --
 
-INSERT INTO `BOOK` (`name`, `auths`, `pub_house`, `pub_year`, `count_in_hall1`, `count_in_hall2`, `count_in_hall3`, `id`, `count_hall_1_z`, `count_hall_2_z`, `count_hall_3_z`) VALUES
-('Ya durachok', 'Daun', 'Ckazheni', '2005-08-25', 53, 11, 0, '1488q6', 0, 0, 0),
-('Dodik', 'n', 'biba', '1994-02-14', 54, 33, 22, 'ABOBA1', 0, 0, 0),
-('Война и мир', 'Лев Толстой', 'Русские классики', '1995-06-25', 0, 25, 15, 'LEV001', 0, 0, 0),
-('ffff', 'ggggg', 'yfyv', '2022-04-15', 10, 12, 3, 'AAAEEE', 0, 0, 0);
+INSERT INTO `book` (`name`, `auths`, `pub_house`, `pub_year`, `count_in_hall1`, `count_in_hall2`, `count_in_hall3`, `id`, `count_hall_1_z`, `count_hall_2_z`, `count_hall_3_z`) VALUES
+('Кобзар', 'Тарас Григорович Шевченко', 'Україньська класична література', '1989-01-26', 20, 30, 12, 'TARAS0', 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `HALL`
+-- Table structure for table `hall`
 --
 
-CREATE TABLE `HALL` (
+CREATE TABLE `hall` (
   `number` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   `capacity` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `HALL`
+-- Dumping data for table `hall`
 --
 
-INSERT INTO `HALL` (`number`, `name`, `capacity`) VALUES
-(1, 'aboba', 50);
+INSERT INTO `hall` (`number`, `name`, `capacity`) VALUES
+(1, 'aboba', 50),
+(2, 'birka', 100),
+(3, 'algeciras', 75);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `USER`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `USER` (
+CREATE TABLE `user` (
   `id` int(7) UNSIGNED NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `passport_number` int(9) UNSIGNED NOT NULL,
@@ -95,35 +94,33 @@ CREATE TABLE `USER` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `USER`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `USER` (`id`, `last_name`, `passport_number`, `date_birth`, `adress`, `phone_number`, `academic_degree`, `hall`, `admission_library`, `book_1`, `book_2`, `book_3`, `date_book_1`, `date_book_2`, `date_book_3`) VALUES
-(1, 'Makoviy', 12, '2003-07-01', 'Poskot, dom 54', 8228, 'Loh computer science', 1, '2022-10-31', NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'Иванов', 12345670, '2000-06-07', 'Проспект Пушкина, дом 31', 932341235, 'Бакалавр компьютерных наук', 2, '2022-10-31', NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'fgjfffg', 148822800, '1488-09-05', 'kgkug', 1234567890, 'piyt', 1, '1939-09-01', NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'dodik', 12345432, '2003-09-07', 'fffrty', 1234543212, 'phougb', 1, '2034-09-12', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `last_name`, `passport_number`, `date_birth`, `adress`, `phone_number`, `academic_degree`, `hall`, `admission_library`, `book_1`, `book_2`, `book_3`, `date_book_1`, `date_book_2`, `date_book_3`) VALUES
+(1, 'Makoviy', 12439765, '2003-07-01', 'Poskot, dom 54', 822843238, 'Loh computer science', 1, '2022-10-31', NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'Иванов', 12345670, '2000-06-07', 'Проспект Пушкина, дом 31', 932341235, 'Бакалавр компьютерных наук', 2, '2022-10-31', NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `BOOK`
+-- Indexes for table `book`
 --
-ALTER TABLE `BOOK`
+ALTER TABLE `book`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `HALL`
+-- Indexes for table `hall`
 --
-ALTER TABLE `HALL`
+ALTER TABLE `hall`
   ADD PRIMARY KEY (`number`);
 
 --
--- Indexes for table `USER`
+-- Indexes for table `user`
 --
-ALTER TABLE `USER`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -131,16 +128,16 @@ ALTER TABLE `USER`
 --
 
 --
--- AUTO_INCREMENT for table `HALL`
+-- AUTO_INCREMENT for table `hall`
 --
-ALTER TABLE `HALL`
-  MODIFY `number` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `hall`
+  MODIFY `number` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `USER`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `USER`
-  MODIFY `id` int(7) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE `user`
+  MODIFY `id` int(7) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
